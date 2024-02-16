@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Application</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-white shadow">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <h1 class="text-xl font-bold">Web Application</h1>
+                <nav>
+                    <ul class="flex space-x-4">
+                        <li><a href="#" class="text-gray-800 hover:text-gray-600">Home</a></li>
+                        <li><a href="#" class="text-gray-800 hover:text-gray-600">About</a></li>
+                        <li><a href="#" class="text-gray-800 hover:text-gray-600">Services</a></li>
+                        <li><a href="#" class="text-gray-800 hover:text-gray-600">Contact</a></li>
+                        <li><a href="/.auth/login/aad" id="loginBtn"  class="text-gray-800 hover:text-gray-600">Login</a></li>
+                        <li><a href="/.auth/logout" id="logoutBtn" class="text-gray-800 hover:text-gray-600 hidden">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="bg-white p-4 shadow rounded-md">
+            <h2 class="text-lg font-semibold mb-4">Welcome to our Web Application <span id="username" class="hidden"></span>!</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquet sem quis quam sodales, ut lacinia
+                odio
+                aliquet. Integer vel nisi eu nisi sodales aliquet a eget purus.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto px-4">
+            <p class="text-center">&copy; 2024 Web Application. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+    <script>
+
+        async function getUserInfo() {
+            const response = await fetch('/.auth/me');
+            const payload = await response.json();
+            const { clientPrincipal } = payload;
+            return clientPrincipal;
+        }
+
+        (async () => {
+            const user = await getUserInfo()
+            console.log(user);
+
+            const logoutBtn = document.getElementById('logoutBtn');
+            logoutBtn.classList.toggle('hidden', !user);
+
+            const loginBtn = document.getElementById('loginBtn');
+            loginBtn.classList.toggle('hidden', user);
+
+            const usernameSpan = document.getElementById('username');
+            usernameSpan.classList.toggle('hidden', !user);
+            usernameSpan.innerText = user ? user.userDetails : "";
+        })();
+
+    </script>
+
+</html>
+

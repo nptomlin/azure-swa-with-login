@@ -1,0 +1,11 @@
+{
+  "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
+  "configurations": {
+    "swa-with-login": {
+      "appLocation": "src",
+      "outputLocation": "src",
+      "appName": "swa-with-login",
+      "resourceGroup": "swa-with-login-rg"
+    }
+  }
+}
