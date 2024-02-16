@@ -1,10 +1,10 @@
 # Static Web App With Auth Demo
 
-A static web app that can be used to test log in.  This Microsoft Entra ID
+A static web app that can be used to test log in.  This uses Microsoft Entra ID
 
 ## Prerequisites
-[Azure SWA CLI installed](https://azure.github.io/static-web-apps-cli/)
-[Azure Portal Account]() Required to run in azure
+* [Azure SWA CLI](https://azure.github.io/static-web-apps-cli/)
+* [Azure Portal Account]() Required to run in azure
 
 ## Run locally
 
